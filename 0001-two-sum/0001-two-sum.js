@@ -4,15 +4,17 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let hashmap = {}
+    const hashmap = {}
     
     for (let i = 0; i < nums.length; i++) {
-        let secVal = target - nums[i]
+        let otherVal = target - nums[i]
         
-        if (secVal in hashmap) {
-            return [hashmap[secVal], i]
+        if (otherVal in hashmap) {
+            return [hashmap[otherVal], i]
         }
         
-        hashmap[nums[i]] = i
+        else {
+            hashmap[nums[i]] = i
+        }
     }
 };
