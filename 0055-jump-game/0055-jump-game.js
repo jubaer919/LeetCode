@@ -3,17 +3,17 @@
  * @return {boolean}
  */
 var canJump = function(nums) {
-    let maxRich = 0
+    let maxJump = 0
+    
     for (let i = 0; i < nums.length; i++) {
-        if (i > maxRich) {
-            return false
-        }
+        if (i > maxJump) return false
         
-        maxRich = Math.max(maxRich, i + nums[i])
+        maxJump = Math.max(maxJump, i + nums[i])
         
-        if (maxRich >= nums.length - 1) {
+        if(maxJump >= nums.length - 1) {
             return true
         }
     }
+    
     return false
 };
