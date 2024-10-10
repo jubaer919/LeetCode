@@ -3,18 +3,19 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    const hashMap = {}
+    let hashmap = {}
     
     for (let str of strs) {
         let sortedStr = str.split('').sort().join('')
         
-        if (!hashMap[sortedStr]) {
-            hashMap[sortedStr] = []
+        if (!hashmap[sortedStr]) {
+            hashmap[sortedStr] = []
         }
         
-        hashMap[sortedStr].push(str)
+        hashmap[sortedStr].push(str)
     }
     
-    return Object.values(hashMap)
+    let result = Object.values(hashmap)
+    return result
     
 };
