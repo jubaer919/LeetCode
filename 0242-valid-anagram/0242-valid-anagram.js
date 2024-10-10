@@ -4,24 +4,21 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    
-    // "anagram" {a: 3, n: 1, g:1, r:1, m:1}
-    
     if (s.length !== t.length) return false
+    let hashmap1 = {}
+    let hashmap2 = {}
     
-    let hashmap = {}
-    let hashmaptwo = {}
-    for (let num of s) {
-        hashmap[num] = (hashmap[num] || 0) + 1
-    }
-    for (let val of t) {
-        hashmaptwo[val] = (hashmaptwo[val] || 0) + 1
+    for (let i = 0; i < s.length; i++) {
+        hashmap1[s[i]] = (hashmap1[s[i]] || 0) + 1
+        hashmap2[t[i]] = (hashmap2[t[i]] || 0) + 1
     }
     
-    for (let key in hashmap) {
-        if(!(hashmap[key] === hashmaptwo[key])) {
+    for (let key in hashmap1) {
+        if (hashmap1[key] !== hashmap2[key]) {
             return false
-           }
+        }
     }
+    
     return true
-};
+    
+}
