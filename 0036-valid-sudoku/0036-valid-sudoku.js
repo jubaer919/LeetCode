@@ -3,27 +3,28 @@
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
-    let cols = Array(9).fill().map(() => new Set())
-    let rows = Array(9).fill().map(() => new Set())
-    let squers = Array(9).fill().map(() => new Set())
-    
+    const row = Array.from({ length: 9 }, () => new Set());
+    const col = Array.from({ length: 9 }, () => new Set());
+    const squares = Array.from({ length: 3 }, () => Array.from({ length: 3 }, () => new Set()));
+
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
-            let val = board[r][c]
-            
-            if(val === ".") continue
-            
-            const squersIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3)
-            
-            if (rows[r].has(val) || cols[c].has(val) || squers[squersIndex].has(val)) {
-                return false
+            if (board[r][c] === '.') continue; // Skip empty cells
+
+            let num = board[r][c];
+            let squareRow = Math.floor(r / 3);
+            let squareCol = Math.floor(c / 3);
+
+            // Check if number already exists in row, column, or 3x3 square
+            if (row[r].has(num) || col[c].has(num) || squares[squareRow][squareCol].has(num)) {
+                return false;
             }
-            
-            cols[c].add(val)
-            rows[r].add(val)
-            squers[squersIndex].add(val)
+
+            // Add number to sets
+            row[r].add(num);
+            col[c].add(num);
+            squares[squareRow][squareCol].add(num);
         }
     }
-    
-    return true
+    return true;
 };
